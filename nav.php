@@ -29,20 +29,39 @@
 
             </ul>
             <div class="phone">
-                <img src="./Images/cell-phone.png" alt="cell-phone" width="20px">
+
                 +7-288-8381-213
+                <img class="phone-img" src="./Images/cell-phone.png" alt="cell-phone" width="20px">
             </div>
-            <form class="form-inline my-2 my-lg-0">
-                <div class="search-box">
-                    <input type="text" class="search-txt" placeholder="Arama Yap">
-                    <a class="search-btn">
-                      &#128269;
-                    </a>
+            <div class="registration nav-item">
+                <a href="#">Регистрация</a> |<a href="#"> Вход</a>
+            </div>
+            <div>
+                <div class="searchbar">
+                    <input class="search_input" type="text" name="" placeholder="Search...">
+                    <a href="#" class="search_icon"><i class="glyphicon glyphicon-search"></i></a>
                 </div>
-            </form>
+            </div>
+        </div>
+        </div>
+        </form>
         </div>
     </nav>
 
+    <div class="header-wrapper">
+        <div class="zoominheader">
+            <div class="header-text">
+                <div class="header-img">
+                    <img src="./Images/book_PNG51047.png" alt="Logo" height="50px" />
+                </div>
+                Libraria<br>
+                <span class="header-text2">Book market</span>
+            </div>
+        </div>
+    </div>
+    <div class="background-img">
+
+    </div>
 </body>
 
 </html> 

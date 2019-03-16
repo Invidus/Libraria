@@ -9,7 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="Header.css" />
+    <link rel="stylesheet" type="text/css" href="./Header.css" />
+    <link rel="stylesheet" href="css/font-glyphicons.css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Monoton' rel='stylesheet' type='text/css'>
@@ -17,29 +18,22 @@
 </head>
 
 <body>
-
-
+    <!-- Navbar & Header -->
     <Header>
-        <div class="background-img">
-
-            <?php
-            include("nav.php")
-            ?>
-
-            <div class="header-text">
-                <div class="header-img">
-                    <img src="./Images/book_PNG51047.png" alt="Logo" height="50px" /> </div>
-                Libraria<br>
-                <span class="header-text2">Book market</span>
-            </div>
-        </div>
+        <?php
+        include("nav.php")
+        ?>
     </Header>
-    <div class="container">
-        <!-- Header -->
+    <!-- Navbar & Header -->
+    
 
-        <!-- Header -->
+    <!-- Main -->
+    <main class="container">
+        <article class="">
 
-    </div>
+        </article>
+    </main>
+    <!-- Main -->
 
     <!-- Footer -->
     <?php
