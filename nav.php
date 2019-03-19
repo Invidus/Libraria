@@ -5,8 +5,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
-
-    <link rel="stylesheet" type="text/css" href="Header.css" />
 </head>
 
 <body>
@@ -18,7 +16,7 @@
             <a class="navbar-brand" href="#"></a>
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Главная<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="index.php">Главная<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Заказы</a>
@@ -34,7 +32,7 @@
                 <img class="phone-img" src="./Images/cell-phone.png" alt="cell-phone" width="20px">
             </div>
             <div class="registration nav-item">
-                <a href="#">Регистрация</a> |<a href="#"> Вход</a>
+                <a href="registration.php">Регистрация</a> |<a href="signIn.php"> Вход</a>
             </div>
             <div>
                 <div class="searchbar">
@@ -43,25 +41,7 @@
                 </div>
             </div>
         </div>
-        </div>
-        </form>
-        </div>
     </nav>
-
-    <div class="header-wrapper">
-        <div class="zoominheader">
-            <div class="header-text">
-                <div class="header-img">
-                    <img src="./Images/book_PNG51047.png" alt="Logo" height="50px" />
-                </div>
-                Libraria<br>
-                <span class="header-text2">Book market</span>
-            </div>
-        </div>
-    </div>
-    <div class="background-img">
-
-    </div>
 </body>
 
 </html> 

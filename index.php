@@ -9,8 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="./Header.css" />
-    <link rel="stylesheet" href="css/font-glyphicons.css">
+    <link rel="stylesheet" type="text/css" href="./css/Header.css" />
+    <link rel="stylesheet" href="./css/font-glyphicons.css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Monoton' rel='stylesheet' type='text/css'>
@@ -22,6 +22,9 @@
     <Header>
         <?php
         include("nav.php")
+        ?>
+        <?php
+        include("header-text.php")
         ?>
     </Header>
     <!-- Navbar & Header -->
