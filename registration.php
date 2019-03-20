@@ -44,43 +44,96 @@
             <label for="phone">Телефон</label>
             <input type="text" name="phone" id="phone">
 
-            <label for="location">Имя</label>
+            <label for="location">Местоположение</label>
             <textarea id="location" name="location" cols="30" rows="10"></textarea>
 
-            <button type="submit">Зарегистроваться</button>
+            <button type="submit" onClick="registration()">Зарегистроваться</button>
         </form>
 
     </main>
 
     <?php 
-    if (
-        isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['login']) &&
-        isset($_POST['pass']) && isset($_POST['pass1']) && isset($_POST['phone']) &&
-        isset($_POST['location'])
-    ) {
-        $user = 'root';
-        $password = 'root';
-        $db = 'libraria';
-        $host = 'localhost';
-        $port = 3307;
 
-        $link = mysqli_connect(
-            "$host:$port",
-            $user,
-            $password,
-            $db
-        );
-        
-        $fname = htmlentities(mysqli_real_escape_string($link,$_POST['fname']));
-        $lname = htmlentities(mysqli_real_escape_string($link,$_POST['lname']));
-        $login = htmlentities(mysqli_real_escape_string($link,$_POST['login']));
-        $pass = htmlentities(mysqli_real_escape_string($link,$_POST['pass']));
-        $phone = htmlentities(mysqli_real_escape_string($link,$_POST['phone']));
-        $location = htmlentities(mysqli_real_escape_string($link,$_POST['location']));
-        $query = "Insert into users values('$fname','$lname','$login','$pass','$phone','$location')";
-        $result = mysqli_query($link,$query) or die ("Error sql" . mysql_error($link));
-        mysqli_close($link);
+    $fname = $_POST['fname'];
+    $lname = $_POST['lname'];
+    $login = $_POST['login'];
+    $pass = $_POST['pass'];
+    $pass1 = $_POST['pass1'];
+    $phone = $_POST['phone'];
+    $location = $_POST['location'];
+
+    // Очистка от Html и php тегов
+    function clearing($value)
+    {
+        $value = trim($value);
+        $value = stripslashes($value);
+        $value = strip_tags($value);
+        $value = htmlspecialchars($value);
+        return $value;
     }
+
+    // Проверка длины введенных данных
+    function check_length($value, $min, $max)
+    {
+        $result = (mb_strlen($value) < $min || mb_strlen($value) > $max);
+        return !$result;
+    }
+
+    // Проверка на незаполненные поля
+    if (
+        !empty($fname) && !empty($lname) && !empty($login) && !empty($pass) &&
+        !empty($pass1) && !empty($phone) && !empty($location)
+    ) {
+        if (
+            check_length($fname, 2, 25) && check_length($lname, 2, 50) &&
+            check_length($login, 2, 30) && check_length($phone, 10, 12)
+        ) {
+
+
+
+            $user = 'root';
+            $password = 'root';
+            $db = 'libraria';
+            $host = 'localhost';
+            $port = 3307;
+
+            $link = mysqli_connect(
+                "$host:$port",
+                $user,
+                $password,
+                $db
+            );
+
+            // ВОЗМОЖНО НУЖНО УДАЛИТЬ!!!!!!!---------------------------------
+           
+            $fnameBD = htmlentities(mysqli_real_escape_string($link, $_POST['fname']));
+            $lnameBD = htmlentities(mysqli_real_escape_string($link, $_POST['lname']));
+            $loginBD = htmlentities(mysqli_real_escape_string($link, $_POST['login']));
+            $passBD = htmlentities(mysqli_real_escape_string($link, $_POST['pass']));
+            $phoneBD = htmlentities(mysqli_real_escape_string($link, $_POST['phone']));
+            $locationBD = htmlentities(mysqli_real_escape_string($link, $_POST['location']));
+            // ВОЗМОЖНО НУЖНО УДАЛИТЬ!!!!!!!---------------------------------
+            
+            //проверка повторения логина
+            $que = "select login from `users` where  login = '$loginBD'";
+            $resu = mysqli_query($link, $query);
+            $w = mysqli_fetch_all($resu);
+            debugger;
+            if (!empty($w)) {
+                echo ("<script>alert('Данный логин уже используется');</script>");
+                //проверка повторения логина
+            } else {
+                 // Внесение данных в БД
+                $query = "Insert into users values('$fnameBD','$lnameBD','$loginBD','$passBD','$phoneBD','$locationBD')";
+                $result = mysqli_query($link, $query) or die("Error sql" . mysql_error($link));
+                mysqli_close($link);
+                echo ("<script>alert('Your successfully registered');</script>");
+                 // Внесение данных в БД
+            }
+        }
+    }
+
+
     ?>
     <!-- Footer -->
     <?php

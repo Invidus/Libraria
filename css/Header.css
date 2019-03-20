@@ -53,9 +53,9 @@ body, p, table, a {
     background-attachment: fixed;
     min-height: 720px;
     overflow: hidden;
-    -moz-transition: all 10s;
-    -webkit-transition: all 10s;
-    transition: all 10s;
+    -moz-transition: all 15s;
+    -webkit-transition: all 15s;
+    transition: all 15s;
     z-index: -2;    
 }
 Header:hover>.background-img{
