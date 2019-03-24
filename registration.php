@@ -96,6 +96,7 @@
             $db = 'libraria';
             $host = 'localhost';
             $port = 3307;
+            $db_table = "users";
 
             $link = mysqli_connect(
                 "$host:$port",
@@ -105,30 +106,30 @@
             );
 
             // ВОЗМОЖНО НУЖНО УДАЛИТЬ!!!!!!!---------------------------------
-           
-            $fnameBD = htmlentities(mysqli_real_escape_string($link, $_POST['fname']));
-            $lnameBD = htmlentities(mysqli_real_escape_string($link, $_POST['lname']));
-            $loginBD = htmlentities(mysqli_real_escape_string($link, $_POST['login']));
-            $passBD = htmlentities(mysqli_real_escape_string($link, $_POST['pass']));
-            $phoneBD = htmlentities(mysqli_real_escape_string($link, $_POST['phone']));
-            $locationBD = htmlentities(mysqli_real_escape_string($link, $_POST['location']));
+            $fnameBD = htmlentities(mysqli_real_escape_string($link, $fname));
+            $lnameBD = htmlentities(mysqli_real_escape_string($link, $lname));
+            $loginBD = htmlentities(mysqli_real_escape_string($link, $login));
+            $passBD = htmlentities(mysqli_real_escape_string($link, $pass));
+            $phoneBD = htmlentities(mysqli_real_escape_string($link,$phone));
+            $locationBD = htmlentities(mysqli_real_escape_string($link, $location));
             // ВОЗМОЖНО НУЖНО УДАЛИТЬ!!!!!!!---------------------------------
             
             //проверка повторения логина
-            $que = "select login from `users` where  login = '$loginBD'";
-            $resu = mysqli_query($link, $query);
-            $w = mysqli_fetch_all($resu);
-            debugger;
-            if (!empty($w)) {
+            $que = "select * from `users` where  login = '$login';";
+            $resu = mysqli_query($link, $que);
+            if(mysqli_num_rows($resu) > 0){
                 echo ("<script>alert('Данный логин уже используется');</script>");
                 //проверка повторения логина
-            } else {
+            }else{
                  // Внесение данных в БД
-                $query = "Insert into users values('$fnameBD','$lnameBD','$loginBD','$passBD','$phoneBD','$locationBD')";
-                $result = mysqli_query($link, $query) or die("Error sql" . mysql_error($link));
-                mysqli_close($link);
-                echo ("<script>alert('Your successfully registered');</script>");
-                 // Внесение данных в БД
+                //  $query = "Insert into users values('$fnameBD','$lnameBD','$loginBD','$passBD','$phoneBD','$locationBD')";
+                //  $result = mysqli_query($link, $query) or die("Error sql" . mysql_error($link));
+                 $result = $mysqli -> query("Insert into".$db_table."(fname,lname,login,pass,phone,location) values ($fname,$lname,$login,$pass,$phone,$location)");
+
+                 mysqli_close($link);
+                 echo ("<script>alert('Your successfully registered');</script>");
+                //  header('Location: http://localhost/Libraria/index.php');
+                  // Внесение данных в БД
             }
         }
     }

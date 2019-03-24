@@ -41,7 +41,6 @@
     <?php 
     $log = false;
 
-
     if (isset($_POST['login']) &&isset($_POST['pass']))
      {
         $user = 'root';
@@ -57,18 +56,17 @@
             $db
         );
         
-       
-        $login = htmlentities(mysqli_real_escape_string($link,$_POST['login']));
-        $pass = htmlentities(mysqli_real_escape_string($link,$_POST['pass']));
-        $query = "select pass from `users` where  login = '$login'";
+        $login = $_POST['login'];
+        $pass= $_POST['pass'];
+        $query = "select * from `users` where  login = '$login' and pass = '$pass';";
         $res = mysqli_query($link,$query);
-        
-        echo "<script>alert('$res');</script>";
-        if($res == $pass){
-            echo "<script>alert('welcome');</script>";
+        if(mysqli_num_rows($res) > 0){
+            echo "<script>alert('Авторизация прошла успешно');</script>";
+        }else{
+            echo "<script>alert('Введены неверные данные');</script>";
         }
         mysqli_close($link);
-    }
+        }
     ?>
     <!-- Footer -->
     <?php
