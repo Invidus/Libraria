@@ -19,10 +19,10 @@
                     <a class="nav-link" href="index.php">Главная<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Заказы</a>
+                    <a class="nav-link" href="signIn.php">Заказы</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#">Избранное</a>
+                    <a class="nav-link " href="signIn.php">Корзина</a>
                 </li>
 
             </ul>

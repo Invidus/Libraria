@@ -86,10 +86,8 @@
     ) {
         if (
             check_length($fname, 2, 25) && check_length($lname, 2, 50) &&
-            check_length($login, 2, 30) && check_length($phone, 10, 12)
+            check_length($login, 2, 30) && check_length($phone, 10, 11)
         ) {
-
-
 
             $user = 'root';
             $password = 'root';
@@ -106,12 +104,12 @@
             );
 
             // ВОЗМОЖНО НУЖНО УДАЛИТЬ!!!!!!!---------------------------------
-            $fnameBD = htmlentities(mysqli_real_escape_string($link, $fname));
-            $lnameBD = htmlentities(mysqli_real_escape_string($link, $lname));
-            $loginBD = htmlentities(mysqli_real_escape_string($link, $login));
-            $passBD = htmlentities(mysqli_real_escape_string($link, $pass));
-            $phoneBD = htmlentities(mysqli_real_escape_string($link,$phone));
-            $locationBD = htmlentities(mysqli_real_escape_string($link, $location));
+            $fnameBD = htmlentities(mysqli_real_escape_string($link, $_POST['fname']));
+            $lnameBD = htmlentities(mysqli_real_escape_string($link, $_POST['lname']));
+            $loginBD = htmlentities(mysqli_real_escape_string($link, $_POST['login']));
+            $passBD = htmlentities(mysqli_real_escape_string($link, $_POST['pass']));
+            $phoneBD = htmlentities(mysqli_real_escape_string($link,$_POST['phone']));
+            $locationBD = htmlentities(mysqli_real_escape_string($link, $_POST['location']));
             // ВОЗМОЖНО НУЖНО УДАЛИТЬ!!!!!!!---------------------------------
             
             //проверка повторения логина
@@ -122,26 +120,25 @@
                 //проверка повторения логина
             }else{
                  // Внесение данных в БД
-                //  $query = "Insert into users values('$fnameBD','$lnameBD','$loginBD','$passBD','$phoneBD','$locationBD')";
-                //  $result = mysqli_query($link, $query) or die("Error sql" . mysql_error($link));
-                 $result = $mysqli -> query("Insert into".$db_table."(fname,lname,login,pass,phone,location) values ($fname,$lname,$login,$pass,$phone,$location)");
-
-                 mysqli_close($link);
-                 echo ("<script>alert('Your successfully registered');</script>");
-                //  header('Location: http://localhost/Libraria/index.php');
+                 $query = "Insert into `users` values('$fnameBD','$lnameBD','$loginBD','$passBD','$phoneBD','$locationBD')";
+                 $result = mysqli_query($link, $query) or die("Error sql" . mysql_error($link));
+                //  $result = $mysqli -> query("Insert into".$db_table."(fname,lname,login,pass,phone,location) values ($fname,$lname,$login,$pass,$phone,$location)");
+                if($result){
+                    echo ("<script>alert('Вы успешно зарегистровались !');</script>");
+                    header('Refresh: 0.3;url = http://localhost/Libraria/signIn.php');
+                }
+                 mysqli_close($link);               
+                
                   // Внесение данных в БД
             }
-        }
+        }else {echo ("<script>alert('Введена неверная длина одного из полей!');</script>");}
     }
-
-
     ?>
     <!-- Footer -->
     <?php
     include("footer.php")
     ?>
     <!-- Footer -->
-    <script src="./js/registration.js"></script>
 </body>
 
 </html> 

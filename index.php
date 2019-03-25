@@ -21,7 +21,8 @@
     <!-- Navbar & Header -->
     <Header>
         <?php
-        include("nav.php")
+        include("nav.php");
+        setcookie("userLogin",'');
         ?>
         <?php
         include("header-text.php")
