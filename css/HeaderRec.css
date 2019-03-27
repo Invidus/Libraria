@@ -1,11 +1,17 @@
 .main-grid{
     display: grid;
     grid-template-columns: repeat(3,1fr);
-    grid-gap: 1em;
-    grid-auto-rows: minmax(400px,400px);    
+    grid-gap: 10px;
+    grid-auto-rows: minmax(100px,431px);    
+    align-items: center;
+    text-align: center;
 }
 .main-images{
-    height: 400px !important;
-    width: auto !important;
+    height: 300px;
+    width: auto;
     
+}
+.images-div{
+    border: 1px solid gray;
+    width: auto;
 }

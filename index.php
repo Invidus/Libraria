@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="./css/HeaderRec.css" />
     <link rel="stylesheet" type="text/css" href="./css/Header.css" />
     <link rel="stylesheet" href="./css/font-glyphicons.css">
+
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Monoton' rel='stylesheet' type='text/css'>
@@ -20,44 +21,55 @@
 
 <body>
     <?
-    setcookie("userLogin", '');
-    $user = 'root';
-    $password = 'root';
-    $db = 'libraria';
-    $host = 'localhost';
-    $port = 3307;
 
-    $link = mysqli_connect(
-        "$host:$port",
-        $user,
-        $password,
-        $db
-    );
-    $query = "select * from `product`";
-    $result = mysqli_query($link, $query);
-    if ($result) {
-        while ($row = mysqli_fetch_row($result)) {
-            $articlesArray = array(
-                $row[0],
-            );
-            // $nameArray = array(
-            //     $row[1],
-            // );
-            // $priceArray = array(
-            //     $row[2],
-            // );
-            // $countArray = array(
-            //     $row[3],
-            // );
-            // $imgArray = array(
-            //     $row[4],
-            // );           
+    setcookie("userLogin", '');
+    // Вывод товаров на экран
+    function bPrint()
+    {
+        $user = 'root';
+        $password = 'root';
+        $db = 'libraria';
+        $host = 'localhost';
+        $port = 3307;
+        $link = mysqli_connect(
+            "$host:$port",
+            $user,
+            $password,
+            $db
+        );
+        $query = "SELECT * FROM `author` join author_book on
+        author.id=author_book.id_a join product on 
+        author_book.article_b=product.article";
+        $result = mysqli_query($link, $query);
+        if ($result) {
+            while ($row = mysqli_fetch_array($result)) {
+                $add = $row['article'];
+                $name = mb_strimwidth($row['name'], 0, 20, '..', 'utf-8');
+                $fname = mb_strimwidth($row['fname'], 0, 1, '', 'utf-8');
+                $srname = mb_strimwidth($row['surrname'], 0, 1, '', 'utf-8');
+
+                echo
+                    "<div class='images-div'>
+            " . $row['image'] . "</br>
+            " . $name . "</br>
+            " . $row['lname'] . " " . $fname . "." . $srname . "." . "</br>
+            " . $row['price'] . "</br>
+            <input type='hidden' name='id' value='" . $add . "' />
+            <button class='btn btn-primary' name = 'add' type='submit' onClick = 'addToCart(" . $row['article'] . ")'>Добавить</button>
+            </div>";
+            }
         }
     }
-    mysqli_free_result($result);
-
-    echo $articlesArray[1];
+    // Вывод товаров на экран
+    // if( isset( $_POST['add'] ) )
+    // {
+    //     echo "<script>alert('ku');</script>";
+    // }
     ?>
+
+
+
+
     <!-- Navbar & Header -->
     <Header>
         <?php
@@ -69,30 +81,22 @@
     </Header>
     <!-- Navbar & Header -->
 
-
     <!-- Main -->
     <main class="container">
-        <article class="main-grid">
-            <?
-            $k = count($articlesArray);
-            echo $k;
-            while ($k != 0) {
-                echo "<div>";
-                echo "<img class='main-images' src='".$imgArray[$k]."' alt='book-logo'>";
-                echo "<p>".$nameArray[$k]."   ".$priceArray[$k]."</p>";
-                echo "</div>";
-                $k--;
-            }
+        <form method="post">
+            <article class="main-grid">
 
+                <?
+                bPrint();
+                // if (isset($_POST['add'])) {
+                //         $idk = $_POST['id'];
+                //         echo "<script>alert(".$idk.")</script>";
 
-            ?>
-            <div class="main-images">
-                <img src="" alt="book-logo">
-            </div>
-            <div class="main-images">
-                <img src="" alt="book-logo">
-            </div>
-        </article>
+                //     }
+                ?>
+
+            </article>
+        </form>
     </main>
     <!-- Main -->
 
@@ -101,7 +105,19 @@
     include("footer.php")
     ?>
     <!-- Footer -->
-
+    <script>
+        function addToCart(id) {
+            $.post({
+                method: "POST",
+                url: "/cart.php",
+                dataType: "text",
+                data: "test = 1",
+            }).done(function(msg) {
+                alert("Data Saved: " + msg);
+            });
+        }
+    </script>
+    <script src="./js/myCart.js"></script>
     <script src="./js/Script.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

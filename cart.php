@@ -2,9 +2,9 @@
 <html>
 
 <head>
-    <meta charset="utf-8" />
+<meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Libraria</title>
+    <title>Cart</title>
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
@@ -19,12 +19,10 @@
 
 <body>
 <?
-    if($_COOKIE['userLogin'] == '') {
-        header('Refresh: 0;url = http://localhost/Libraria/Index.php');
-    }
+    // if($_COOKIE['userLogin'] == '') {
+    //     header('Refresh: 0;url = http://localhost/Libraria/Index.php');
+    // }
 ?>
-    <!-- Navbar -->
-    <Header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -32,15 +30,16 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
             <a class="navbar-brand" href="#"></a>
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item ">
+                    <a class="nav-link" href="index.php">Главная</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="signIn.php">Заказы</a>
+                </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="AuthorzdIndex.php">Главная<span class="sr-only">(current)</span></a>
+                    <a class="nav-link " href="cart.php">Корзина<span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Заказы</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="cart.php">Корзина</a>
-                </li>
+
             </ul>
             <div class="phone">
 
@@ -64,31 +63,45 @@
             </div>
         </div>
     </nav>
-    <div class="main-logo">
-    <hr>
-    </div>
-    </Header>
-    <!-- Navbar -->
+    <?
 
-    <!-- Main -->
-    <main class="container">
-        <article class="">
-
-        </article>
-    </main>
-    <!-- Main -->
-
-    <!-- Footer -->
-    <?php
-    include("footer.php")
+    $user = 'root';
+    $password = 'root';
+    $db = 'libraria';
+    $host = 'localhost';
+    $port = 3307;
+    $link = mysqli_connect(
+        "$host:$port",
+        $user,
+        $password,
+        $db
+    );
+    
+    
+    echo $_POST[test];
+    // $action = $_POST["action"];
+    // for ($i = 0; $i < count($cart); $i++){
+    //     $idProduct = $cart[$i]["article"];
+    //     $query = 'select * from product where id = '.$cart[$i]["article"].'';
+    //     $results = $mysqli->query($query);
+    //     while($row = $results->fetch_assoc()){
+    //         echo'
+    //         <ul class="cart-header">
+    //              <input type="button" value="Убрать" onClick="delFromCart('.$row["article"].')"
+    //                  <li class="ring-in"><a href="single.html" ><img src="'.$row["image"].'" class="img-responsive" alt=""></a>
+    //                  </li>
+    //                  <li><span class="name">'.$row["name"].'</span></li>
+    //                  <li><span class="cost">'.$row["price"].' руб.</span></li>
+    //                  <li><span>Free</span>
+    //                  <p>Delivered in 2-3 business days</p></li>
+    //              <div class="clearfix"> </div>
+    //          </ul>
+    //         ';
+                                
+    //     }
+        
+    // }
     ?>
-    <!-- Footer -->
-
-    <script src="Script.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-
 </body>
 
 </html> 
