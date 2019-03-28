@@ -15,7 +15,6 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Monoton' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Bungee' rel='stylesheet' type='text/css'>
-
 </head>
 
 <body>
@@ -35,41 +34,39 @@
 
             <button type="submit">Вход</button>
         </form>
-
     </main>
 
     <?php 
     session_start();
     $log = false;
 
-    if (isset($_POST['login']) &&isset($_POST['pass']))
-     {
-        $user = 'root';
-        $password = 'root';
-        $db = 'libraria';
-        $host = 'localhost';
-        $port = 3307;
+    if (isset($_POST['login']) && isset($_POST['pass'])) {
+            $user = 'root';
+            $password = 'root';
+            $db = 'libraria';
+            $host = 'localhost';
+            $port = 3307;
 
-        $link = mysqli_connect(
-            "$host:$port",
-            $user,
-            $password,
-            $db
-        );
-        
-        $login = $_POST['login'];
-        $pass= $_POST['pass'];
-        $query = "select * from `users` where  login = '$login' and pass = '$pass';";
-        $res = mysqli_query($link,$query);
-        if(mysqli_num_rows($res) > 0){
-            setcookie("userLogin", $login);
-            // $_SESSION['userLogin'] = $login;
-            echo "<script>alert('Авторизация прошла успешно.Вы будете перенаправлены на главную страницу');</script>";
-            header('Refresh: 0.3;url = http://localhost/Libraria/AuthorzdIndex.php');
-        }else{
-            echo "<script>alert('Введены неверные данные');</script>";
-        }
-        mysqli_close($link);
+            $link = mysqli_connect(
+                "$host:$port",
+                $user,
+                $password,
+                $db
+            );
+
+            $login = $_POST['login'];
+            $pass = $_POST['pass'];
+            $query = "select * from `users` where  login = '$login' and pass = '$pass';";
+            $res = mysqli_query($link, $query);
+            if (mysqli_num_rows($res) > 0) {
+                setcookie("userLogin", $login);
+                // $_SESSION['userLogin'] = $login;
+                echo "<script>alert('Авторизация прошла успешно.Вы будете перенаправлены на главную страницу');</script>";
+                header('Refresh: 0.3;url = http://localhost/Libraria/AuthorzdIndex.php');
+            } else {
+                echo "<script>alert('Введены неверные данные');</script>";
+            }
+            mysqli_close($link);
         }
     ?>
     <!-- Footer -->

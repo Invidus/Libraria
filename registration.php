@@ -84,61 +84,86 @@
         !empty($fname) && !empty($lname) && !empty($login) && !empty($pass) &&
         !empty($pass1) && !empty($phone) && !empty($location)
     ) {
-        if (
-            check_length($fname, 2, 25) && check_length($lname, 2, 50) &&
-            check_length($login, 2, 30) && check_length($phone, 10, 11)
-        ) {
+        if ($pass == $pass1) {
+            if (
+                check_length($fname, 2, 25) && check_length($lname, 2, 50) &&
+                check_length($login, 2, 30) && check_length($phone, 10, 11)
+            ) {
 
-            $user = 'root';
-            $password = 'root';
-            $db = 'libraria';
-            $host = 'localhost';
-            $port = 3307;
-            $db_table = "users";
+                $user = 'root';
+                $password = 'root';
+                $db = 'libraria';
+                $host = 'localhost';
+                $port = 3307;
+                $db_table = "users";
 
-            $link = mysqli_connect(
-                "$host:$port",
-                $user,
-                $password,
-                $db
-            );
+                $link = mysqli_connect(
+                    "$host:$port",
+                    $user,
+                    $password,
+                    $db
+                );
 
-            // ВОЗМОЖНО НУЖНО УДАЛИТЬ!!!!!!!---------------------------------
-            $fnameBD = htmlentities(mysqli_real_escape_string($link, $_POST['fname']));
-            $lnameBD = htmlentities(mysqli_real_escape_string($link, $_POST['lname']));
-            $loginBD = htmlentities(mysqli_real_escape_string($link, $_POST['login']));
-            $passBD = htmlentities(mysqli_real_escape_string($link, $_POST['pass']));
-            $phoneBD = htmlentities(mysqli_real_escape_string($link,$_POST['phone']));
-            $locationBD = htmlentities(mysqli_real_escape_string($link, $_POST['location']));
-            // ВОЗМОЖНО НУЖНО УДАЛИТЬ!!!!!!!---------------------------------
-            
-            //проверка повторения логина
-            $que = "select * from `users` where  login = '$login';";
-            $resu = mysqli_query($link, $que);
-            if(mysqli_num_rows($resu) > 0){
-                echo ("<script>alert('Данный логин уже используется');</script>");
+                $fnameBD = htmlentities(mysqli_real_escape_string($link, $_POST['fname']));
+                $lnameBD = htmlentities(mysqli_real_escape_string($link, $_POST['lname']));
+                $loginBD = htmlentities(mysqli_real_escape_string($link, $_POST['login']));
+                $passBD = htmlentities(mysqli_real_escape_string($link, $_POST['pass']));
+                $phoneBD = htmlentities(mysqli_real_escape_string($link, $_POST['phone']));
+                $locationBD = htmlentities(mysqli_real_escape_string($link, $_POST['location']));
+
+
                 //проверка повторения логина
-            }else{
-                 // Внесение данных в БД
-                 $query = "Insert into `users` values('$fnameBD','$lnameBD','$loginBD','$passBD','$phoneBD','$locationBD')";
-                 $result = mysqli_query($link, $query) or die("Error sql" . mysql_error($link));
-                //  $result = $mysqli -> query("Insert into".$db_table."(fname,lname,login,pass,phone,location) values ($fname,$lname,$login,$pass,$phone,$location)");
-                if($result){
-                    echo ("<script>alert('Вы успешно зарегистровались !');</script>");
-                    header('Refresh: 0.3;url = http://localhost/Libraria/signIn.php');
+                $que = "select * from `users` where  login = '$login';";
+                $resu = mysqli_query($link, $que);
+                if (mysqli_num_rows($resu) > 0) {
+                    echo ("<script>alert('Данный логин уже используется');</script>");
+                    //проверка повторения логина
+                } else {
+                    // Внесение данных в БД
+                    $query = "Insert into `users` values('$fnameBD','$lnameBD','$loginBD','$passBD','$phoneBD','$locationBD')";
+                    $result = mysqli_query($link, $query) or die("Error sql" . mysql_error($link));
+                    //  $result = $mysqli -> query("Insert into".$db_table."(fname,lname,login,pass,phone,location) values ($fname,$lname,$login,$pass,$phone,$location)");
+                    if ($result) {
+                        echo ("<script>alert('Вы успешно зарегистровались !');</script>");
+                        header('Refresh: 0.3;url = http://localhost/Libraria/signIn.php');
+                    }
+                    mysqli_close($link);
+
+                    // Внесение данных в БД
                 }
-                 mysqli_close($link);               
-                
-                  // Внесение данных в БД
+            } else {
+                echo ("<script>alert('Введена неверная длина одного из полей!');</script>");
             }
-        }else {echo ("<script>alert('Введена неверная длина одного из полей!');</script>");}
+        } else {
+            echo ("<script>alert('Пароли не совпадают');</script>");
+        }
     }
+    // else{
+    //     echo("<script>alert('Заполните поля');</script>");
+    // }
     ?>
     <!-- Footer -->
     <?php
     include("footer.php")
     ?>
     <!-- Footer -->
+    <script>
+        // Проверка заполненности полей
+        function registration() {
+            var fn = document.getElementById('fname');
+            var ln = document.getElementById('lname');
+            var logn = document.getElementById('login');
+            var pass = document.getElementById('pass');
+            var pass1 = document.getElementById('pass1');
+            var ph = document.getElementById('phone');
+            var loc = document.getElementById('location');
+            if (fn.value == "" || ln.value == "" || logn.value == "" || pass.value == "" || pass1.value == "" ||
+                ph.value == "" || loc.value == "") {
+                alert("Заполните все поля!");
+            }
+        }
+        // Проверка заполненности полей
+    </script>
 </body>
 
 </html> 

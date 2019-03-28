@@ -11,3 +11,5 @@ function addToCart(id) {
         alert("Data Saved: " + msg);
     });
 }
+
+var fn = document.getElementById('fname');

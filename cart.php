@@ -64,21 +64,31 @@
         </div>
     </nav>
     <?
+    $ids = array();
+    if(isset($_GET['id'])){
+        // foreach($_GET as $key => $value){
+        //     echo $key .' = '.$value.'<br>';
 
-    $user = 'root';
-    $password = 'root';
-    $db = 'libraria';
-    $host = 'localhost';
-    $port = 3307;
-    $link = mysqli_connect(
-        "$host:$port",
-        $user,
-        $password,
-        $db
-    );
+        // }
+        array_push($ids,$_GET['id']);
+        
+    }
+    print_r($ids);
+
+    // $user = 'root';
+    // $password = 'root';
+    // $db = 'libraria';
+    // $host = 'localhost';
+    // $port = 3307;
+    // $link = mysqli_connect(
+    //     "$host:$port",
+    //     $user,
+    //     $password,
+    //     $db
+    // );
     
     
-    echo $_POST[test];
+    // echo $_POST[test];
     // $action = $_POST["action"];
     // for ($i = 0; $i < count($cart); $i++){
     //     $idProduct = $cart[$i]["article"];
@@ -102,6 +112,8 @@
         
     // }
     ?>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
 </body>
 
 </html> 

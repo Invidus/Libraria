@@ -9,7 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="./css/HeaderRec.css" />
     <link rel="stylesheet" type="text/css" href="./css/Header.css" />
     <link rel="stylesheet" href="./css/font-glyphicons.css">
 
@@ -54,22 +53,15 @@
             " . $name . "</br>
             " . $row['lname'] . " " . $fname . "." . $srname . "." . "</br>
             " . $row['price'] . "</br>
+            <form action='cart.php' method='get'>
             <input type='hidden' name='id' value='" . $add . "' />
-            <button class='btn btn-primary' name = 'add' type='submit' onClick = 'addToCart(" . $row['article'] . ")'>Добавить</button>
+            <button class='btn btn-primary' name = 'add' type='submit' >Добавить</button>
+            </form>
             </div>";
             }
         }
     }
-    // Вывод товаров на экран
-    // if( isset( $_POST['add'] ) )
-    // {
-    //     echo "<script>alert('ku');</script>";
-    // }
     ?>
-
-
-
-
     <!-- Navbar & Header -->
     <Header>
         <?php
@@ -83,18 +75,11 @@
 
     <!-- Main -->
     <main class="container">
-        <form method="post">
+        
             <article class="main-grid">
-
                 <?
                 bPrint();
-                // if (isset($_POST['add'])) {
-                //         $idk = $_POST['id'];
-                //         echo "<script>alert(".$idk.")</script>";
-
-                //     }
                 ?>
-
             </article>
         </form>
     </main>
@@ -105,18 +90,7 @@
     include("footer.php")
     ?>
     <!-- Footer -->
-    <script>
-        function addToCart(id) {
-            $.post({
-                method: "POST",
-                url: "/cart.php",
-                dataType: "text",
-                data: "test = 1",
-            }).done(function(msg) {
-                alert("Data Saved: " + msg);
-            });
-        }
-    </script>
+   
     <script src="./js/myCart.js"></script>
     <script src="./js/Script.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

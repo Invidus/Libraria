@@ -22,7 +22,7 @@
                     <a class="nav-link" href="signIn.php">Заказы</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="signIn.php">Корзина</a>
+                    <a class="nav-link " href="cart.php">Корзина</a>
                 </li>
 
             </ul>

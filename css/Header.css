@@ -56,9 +56,10 @@ body, p, table, a {
     -moz-transition: all 15s;
     -webkit-transition: all 15s;
     transition: all 15s;
-    z-index: -2;    
+    z-index: -2;
 }
-Header:hover>.background-img{
+
+Header:hover>.background-img {
     -moz-transform: scale(1.1);
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
@@ -98,14 +99,11 @@ Header:hover>.background-img{
     padding: 0px;
     height: 0.7em;
     z-index: 1;
-
 }
 
 .bg-light {
     background-color: #f7e1ff !important;
 }
-
-
 
 /* BG header img */
 
@@ -114,17 +112,20 @@ Header:hover>.background-img{
 .navbar {
     z-index: 2;
 }
-.registration{
 
+.registration {
     margin: 7px;
 }
-a{
-   color: rgba(0,0,0,.9);
-   text-decoration: none !important;
+
+a {
+    color: rgba(0, 0, 0, .9);
+    text-decoration: none !important;
 }
-a:hover{
-    color:black;
+
+a:hover {
+    color: black;
 }
+
 .searchbar {
     height: 40px;
     background-color: #f7e1ff;
@@ -168,9 +169,11 @@ a:hover{
     border-radius: 50% 45% 45% 50%;
     color: #353b48;
 }
-.phone>img{
+
+.phone>img {
     margin-bottom: 5px;
 }
+
 .phone {
     position: absolute;
     width: 100%;
@@ -179,9 +182,9 @@ a:hover{
     padding: 0px;
     z-index: -1;
 }
-.phone-img{
+
+.phone-img {
     position: relative;
-    
 }
 
 @media only screen and (max-width: 950px) {
@@ -194,19 +197,34 @@ a:hover{
     .search_icon {
         color: #f7e1ff;
     }
-    .navbar{
+    .navbar {
         position: absolute;
         width: 100%;
     }
-    .registration{
+    .registration {
         margin-left: 0px;
     }
-
 }
 
 /* Navbar */
-.image-div{
-    
+
+.main-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(100px, 431px);
+    align-items: center;
+    text-align: center;
+}
+
+.main-images {
+    height: 300px;
+    width: auto;
+}
+
+.images-div {
+    border: 1px solid gray;
+    width: auto;
 }
 
 .footer-hr {
