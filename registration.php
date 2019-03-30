@@ -18,37 +18,105 @@
 
 </head>
 
-<body>
+<body class="reg">
     <!-- nAV -->
-    <?php
-    include("nav.php")
-    ?>
-    <!-- nAV -->
-    <main class="container">
-        <form action="registration.php" method="post">
-            <label for="fname">Имя</label>
-            <input type="text" name="fname" id="fname">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <a class="navbar-brand" href="#"></a>
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php">Главная<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="signIn.php">Заказы</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="cart.php">Корзина</a>
+                </li>
 
-            <label for="lname">Фамилия</label>
+            </ul>
+            <div class="phone">
+
+                +7-288-8381-213
+                <img class="phone-img" src="./Images/cell-phone.png" alt="cell-phone" width="20px">
+            </div>
+            <div class="registration nav-item">
+                <a href="registration.php">Регистрация</a> |<a href="signIn.php"> Вход</a>
+            </div>
+            <div>
+                <div class="searchbar">
+                    <input class="search_input" type="text" name="" placeholder="Search...">
+                    <a href="#" class="search_icon"><i class="glyphicon glyphicon-search"></i></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- nAV -->
+
+
+    <main class="container ">
+        <form class="reg-inputs" action="registration.php" method="post">
+            <div class='reg-head'>
+                <h3>Регистрация</h3>
+            </div>
+            <div class="form-group">
+                <label for="fname">Имя</label>
+                <input type="text" class="form-control" name="fname" id="fname" placeholder="Введите ваше имя">
+            </div>
+            <div class="form-group">
+                <label for="lname">Фамилия</label>
+                <input type="text" class="form-control" name="lname" id="lname" placeholder="Введите вашу фамилию">
+            </div>
+            <div class="form-group">
+                <label for="login">Логин</label>
+                <input type="text" class="form-control" name="login" id="login" placeholder="Придумайте логин">
+            </div>
+            <div class="form-group">
+                <label for="pass">Пароль</label>
+                <input type="password" class="form-control" name="pass" id="pass" placeholder="Придумайте пароль">
+            </div>
+            <div class="form-group">
+                <label for="pass1">Повторите пароль</label>
+                <input type="password" class="form-control" name="pass1" id="pass1" placeholder="Повторите пароль">
+            </div>
+            <div class="form-group">
+                <label for="phone">Номер телефона</label>
+                <input type="tel" class="form-control" name="phone" id="phone" placeholder="Введите ваш номер телефона">
+            </div>
+            <div class="form-group">
+                <label for="location">Местоположение</label>
+                <input type="text" class="form-control" name="location" id="location" placeholder="Ваше местоположение">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+        </form>
+
+        <!-- <div><label for="fname">Имя</label><br>
+            <input type="text" name="fname" id="fname"></div>
+
+            <label for="lname">Фамилия</label><br>
             <input type="text" name="lname" id="lname">
 
-            <label for="login">Логин</label>
+            <label for="login">Логин</label><br>
             <input type="text" name="login" id="login">
 
-            <label for="pass">Пароль</label>
+            <label for="pass">Пароль</label><br>
             <input type="text" name="pass" id="pass">
 
-            <label for="pass1">Повторите пароль</label>
+            <label for="pass1">Повторите пароль</label><br>
             <input type="text" name="pass1" id="pass1">
 
-            <label for="phone">Телефон</label>
+            <label for="phone">Телефон</label>br
             <input type="text" name="phone" id="phone">
 
             <label for="location">Местоположение</label>
             <textarea id="location" name="location" cols="30" rows="10"></textarea>
 
             <button type="submit" onClick="registration()">Зарегистроваться</button>
-        </form>
+        </form> -->
 
     </main>
 

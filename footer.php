@@ -1,7 +1,7 @@
-<footer class="page-footer ">
+<footer class="page-footer white-bg">
 
   <div class = " footer-hr">
-    <div class="container">
+    <div class="container ">
 
       <!-- Grid row-->
       <div class="row py-4 d-flex align-items-center">

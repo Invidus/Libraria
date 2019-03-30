@@ -105,6 +105,17 @@ Header:hover>.background-img {
     background-color: #f7e1ff !important;
 }
 
+.hr-header{
+    background-color:#f7e1ff;
+    height: 100px;
+    align-items: center;
+    text-align: center;
+    
+}
+.hr-header-img{
+    margin-top: 20px;
+    height: 60px;
+}
 /* BG header img */
 
 /* Navbar */
@@ -215,6 +226,7 @@ a:hover {
     grid-auto-rows: minmax(100px, 431px);
     align-items: center;
     text-align: center;
+
 }
 
 .main-images {
@@ -223,10 +235,74 @@ a:hover {
 }
 
 .images-div {
+    padding: 1px;
     border: 1px solid gray;
+    box-shadow:0 0 3px #353b48;
+    border-radius:10px;
+    background-color: #f3f3f3;
     width: auto;
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+    -ms-border-radius:10px;
+    -o-border-radius:10px;
 }
 
 .footer-hr {
     background-color: #f7e1ff;
+}
+.auth{
+    background-image: url('../Images/mota.ru_20151207005.jpg');
+    position: relative;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.auth-inputs{
+    margin-top: 100px !important;
+    margin-bottom: 100px !important;
+}
+.reg{
+    background-image: url('../Images/mota.ru_20151207005.jpg');
+    background-position: top center;
+    -webkit-background-size: cover;
+    position: relative;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 720px;
+
+}
+.btn-primary{
+    background-color: #545e72;
+    border: 1px solid black !important;
+    
+}
+.btn-primary:hover{
+    background-color:#353b48;
+}
+.reg-inputs{
+    background-color: white;
+    border: 1px solid gray;
+    border-radius:10px;
+    box-shadow:0 0 3px #353b48;
+    display: grid;
+    margin: 10px;
+    margin-left: 20%;
+    margin-right: 20%;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(50px, 80px);
+    align-items: center;
+    text-align:left;
+    padding: 10px;
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+    -ms-border-radius:10px;
+    -o-border-radius:10px;
+    opacity: 0.95;
+}
+.reg-head{
+    text-align: center;
+
+}
+.white-bg{
+    background-color: white;
 }
