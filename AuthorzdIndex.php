@@ -18,62 +18,101 @@
 </head>
 
 <body>
-<?
-    if($_COOKIE['userLogin'] == '') {
-        header('Refresh: 0;url = http://localhost/Libraria/Index.php');
+    <?
+    if ($_COOKIE['userLogin'] == '') {
+        header('Refresh: 0;url = http://localhost/Libraria/Index.php');}
+        function bPrint()
+    {
+        $user = 'root';
+        $password = 'root';
+        $db = 'libraria';
+        $host = 'localhost';
+        $port = 3307;
+        $link = mysqli_connect(
+            "$host:$port",
+            $user,
+            $password,
+            $db
+        );
+        $query = "SELECT * FROM `author` join author_book on
+        author.id=author_book.id_a join product on 
+        author_book.article_b=product.article";
+        $result = mysqli_query($link, $query);
+        if ($result) {
+            while ($row = mysqli_fetch_array($result)) {
+                $add = $row['article'];
+                $name = mb_strimwidth($row['name'], 0, 20, '..', 'utf-8');
+                $fname = mb_strimwidth($row['fname'], 0, 1, '', 'utf-8');
+                $srname = mb_strimwidth($row['surrname'], 0, 1, '', 'utf-8');
+
+                echo
+                    "<div class='images-div'>
+            " . $row['image'] . "</br>
+            " . $name . "</br>
+            " . $row['lname'] . " " . $fname . "." . $srname . "." . "</br>" . $row['price'] . " ₽. </br>
+            <form action='cart.php' method='get'>
+            <input type='hidden' name='id' value='" . $add . "' />
+            <button class='btn btn-primary' onclick = 'counter()' name = 'add' type='submit' >Добавить в корзину</button>
+            </form>
+            </div>";
+            }
+        }
     }
-?>
+    
+    ?>
     <!-- Navbar -->
     <Header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <a class="navbar-brand" href="#"></a>
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item active">
-                    <a class="nav-link" href="AuthorzdIndex.php">Главная<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Заказы</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="cart.php">Корзина</a>
-                </li>
-            </ul>
-            <div class="phone">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <a class="navbar-brand" href="#"></a>
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="AuthorzdIndex.php">Главная<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Заказы</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="cart.php">Корзина</a>
+                    </li>
+                </ul>
+                <div class="phone">
 
-                +7-288-8381-213
-                <img class="phone-img" src="./Images/cell-phone.png" alt="cell-phone" width="20px">
-            </div>
-            <div class="registration nav-item">
-                <a href="#">
-                <?
-                
-                session_start();
-                    echo "Здравствуйте, ".$_COOKIE['userLogin'];
-                ?>
-                </a>  |<a href="Index.php"> Выход</a>
-            </div>
-            <div>
-                <div class="searchbar">
-                    <input class="search_input" type="text" name="" placeholder="Search...">
-                    <a href="#" class="search_icon"><i class="glyphicon glyphicon-search"></i></a>
+                    +7-288-8381-213
+                    <img class="phone-img" src="./Images/cell-phone.png" alt="cell-phone" width="20px">
+                </div>
+                <div class="registration nav-item">
+                    <a href="#">
+                        <?
+
+                        session_start();
+                        echo "Здравствуйте, " . $_COOKIE['userLogin'];
+                        ?>
+                    </a> |<a href="Index.php"> Выход</a>
+                </div>
+                <div>
+                    <div class="searchbar">
+                        <input class="search_input" type="text" name="" placeholder="Search...">
+                        <a href="#" class="search_icon"><i class="glyphicon glyphicon-search"></i></a>
+                    </div>
                 </div>
             </div>
+        </nav>
+        <div class="main-logo">
+            <hr>
         </div>
-    </nav>
-    <div class="main-logo">
-    <hr>
-    </div>
     </Header>
     <!-- Navbar -->
 
     <!-- Main -->
     <main class="container">
-        <article class="">
-
+        <article class="main-grid">
+            <?
+            bPrint();
+            ?>
         </article>
     </main>
     <!-- Main -->
@@ -88,7 +127,23 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-
+    <script>
+        var k = 0;
+        $(document).ready(function() {
+            $("a[href*=#]").on("click", function(e) {
+                var anchor = $(this);
+                $('html, body').stop().animate({
+                    scrollTop: $(anchor.attr('href')).offset().top
+                }, 777);
+                e.preventDefault();
+                return false;
+            });
+        });
+        function counter() {
+            k++;
+            
+        }
+    </script>
 </body>
 
 </html> 

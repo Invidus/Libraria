@@ -35,10 +35,10 @@
                 <a href="registration.php">Регистрация</a> |<a href="signIn.php"> Вход</a>
             </div>
             <div>
-                <div class="searchbar">
+                <!-- <div class="searchbar">
                     <input class="search_input" type="text" name="" placeholder="Search...">
                     <a href="#" class="search_icon"><i class="glyphicon glyphicon-search"></i></a>
-                </div>
+                </div> -->
             </div>
         </div>
     </nav>

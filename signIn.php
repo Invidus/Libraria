@@ -44,12 +44,12 @@
             <div class="registration nav-item">
                 <a href="registration.php">Регистрация</a> |<a href="signIn.php"> Вход</a>
             </div>
-            <div>
+            <!-- <div>
                 <div class="searchbar">
                     <input class="search_input" type="text" name="" placeholder="Search...">
                     <a href="#" class="search_icon"><i class="glyphicon glyphicon-search"></i></a>
                 </div>
-            </div>
+            </div> -->
         </div>
     </nav>
     <!-- nAV -->
@@ -64,7 +64,7 @@
             </div>
             <div class="form-group">
                 <label for="pass">Пароль</label>
-                <input type="text" class="form-control" name="pass" id="pass" placeholder="Введите логин">
+                <input type="password" class="form-control" name="pass" id="pass" placeholder="Введите логин">
             </div>
             <button type="submit" class="btn btn-primary">Вход</button>
             <!-- <label for="login">Логин</label>
@@ -103,7 +103,11 @@
             setcookie("userLogin", $login);
             // $_SESSION['userLogin'] = $login;
             echo "<script>alert('Авторизация прошла успешно.Вы будете перенаправлены на главную страницу');</script>";
-            header('Refresh: 0.3;url = http://localhost/Libraria/AuthorzdIndex.php');
+            if ($login == "admin" && $pass = "admin") {
+                header('Refresh: 0.3;url = http://localhost/Libraria/adminPanel.php');
+             } else {
+                header('Refresh: 0.3;url = http://localhost/Libraria/AuthorzdIndex.php');
+            }
         } else {
             echo "<script>alert('Введены неверные данные');</script>";
         }

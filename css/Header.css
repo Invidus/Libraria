@@ -228,7 +228,10 @@ a:hover {
     text-align: center;
 
 }
-
+.form1{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 .main-images {
     height: 300px;
     width: auto;
@@ -245,6 +248,30 @@ a:hover {
     -moz-border-radius:10px;
     -ms-border-radius:10px;
     -o-border-radius:10px;
+}
+.counter{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+    
+}
+.he{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.counter-text{
+    border: 1px solid black;
+    border-radius:10px;
+    padding: 10px;
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+    -ms-border-radius:10px;
+    -o-border-radius:10px;
+    box-shadow:0 0 3px #353b48;
+    background-color: #f3f3f3;
 }
 
 .footer-hr {
