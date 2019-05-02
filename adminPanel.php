@@ -50,12 +50,6 @@
                         ?>
                     </a> |<a href="Index.php"> Выход</a>
                 </div>
-                <!-- <div>
-                    <div class="searchbar">
-                        <input class="search_input" type="text" name="" placeholder="Search...">
-                        <a href="#" class="search_icon"><i class="glyphicon glyphicon-search"></i></a>
-                    </div>
-                </div> -->
             </div>
         </nav>
         <!-- nAV -->
@@ -121,19 +115,7 @@
     if (
         !empty($article) && !empty($name) && !empty($price) && !empty($count)
     ) {
-        $user = 'root';
-        $password = 'root';
-        $db = 'libraria';
-        $host = 'localhost';
-        $port = 3307;
-        $db_table = "product";
-
-        $link = mysqli_connect(
-            "$host:$port",
-            $user,
-            $password,
-            $db
-        );
+        require("connect.php");
 
         $articleBD = htmlentities(mysqli_real_escape_string($link, $_POST['article']));
         $nameBD = htmlentities(mysqli_real_escape_string($link, $_POST['name']));
@@ -191,7 +173,7 @@
         $password = 'root';
         $db = 'libraria';
         $host = 'localhost';
-        $port = 3307;
+        $port = 3306;
         $link = mysqli_connect(
             "$host:$port",
             $user,

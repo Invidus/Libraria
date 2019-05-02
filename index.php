@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="./css/Header.css" />
     <link rel="stylesheet" href="./css/font-glyphicons.css">
-
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Monoton' rel='stylesheet' type='text/css'>
@@ -23,44 +22,38 @@
     session_start();
     setcookie("userLogin", '');
     setcookie("article", '');
+    $arr = array();
     // Вывод товаров на экран
-    function bPrint()
+    function bookPrint()
     {
-        $user = 'root';
-        $password = 'root';
-        $db = 'libraria';
-        $host = 'localhost';
-        $port = 3307;
-        $link = mysqli_connect(
-            "$host:$port",
-            $user,
-            $password,
-            $db
-        );
-        $query = "SELECT * FROM `author` join author_book on
-        author.id=author_book.id_a join product on 
-        author_book.article_b=product.article";
-        $result = mysqli_query($link, $query);
-        if ($result) {
-            while ($row = mysqli_fetch_array($result)) {
-                $add = $row['article'];
-                $name = mb_strimwidth($row['name'], 0, 20, '..', 'utf-8');
-                $fname = mb_strimwidth($row['fname'], 0, 1, '', 'utf-8');
-                $srname = mb_strimwidth($row['surrname'], 0, 1, '', 'utf-8');
 
-                echo
-                    "<div class='images-div'>
-            " . $row['image'] . "</br>
-            " . $name . "</br>
-            " . $row['lname'] . " " . $fname . "." . $srname . "." . "</br>" . $row['price'] . " ₽. </br>
-            <form action='cart.php' method='get'>
-            <input type='hidden' name='id' value='" . $add . "' />
-            <button class='btn btn-primary' name = 'add' type='submit' onclick = 'counter()' >Добавить в корзину</button>
-            </form>
-            </div>";
-            }
-        }
+        require("outputItems.php");
+        require("CartC.php");
+        # Добавление ID товара в корзину
+        $id = $_POST['article'];
+        $cart = new Cart;
+        $cart->set($id);
+
+        $cart->save();
+
+        $ids = $cart->get();
+        print_r($ids);
+        // $i = 0;
+        
+        // if(isset($_POST['add'])){
+        //     setcookie('Article',$_POST['article']);
+        //     print_r($_COOKIE['Article']);
+
+        // setcookie('Article[]',null);
+        // print_r( $_COOKIE );
+        // print_r( $_COOKIE );
+        // $o = $_POST['article']; 
+
+        // array_push($arr,$o);
+        // setcookie('Article',json_encode($_POST['article']));
+        // echo $arr[0];
     }
+    
     ?>
     <!-- Navbar & Header -->
     <Header>
@@ -80,16 +73,14 @@
 
     <!-- Main -->
     <main class="container" id='scrolla'>
-
         <article class="main-grid">
             <?
-            bPrint();
+            bookPrint();
             ?>
         </article>
-        <!-- <div class = "counter"><span class = "counter-text"> В корзине: <label id = "c"></label> предметов. </span></div> -->
     </main>
     <!-- Main -->
-    
+
     <!-- Footer -->
     <?php
     include("footer.php")
@@ -101,7 +92,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script>
-    var k = 0;
+        var k = 0;
         $(document).ready(function() {
             $("a[href*=#]").on("click", function(e) {
                 var anchor = $(this);
@@ -112,12 +103,7 @@
                 return false;
             });
         });
-        // function counter() {
-        //     k++;
-        //     var el = document.getElementById('c');
-        //     el.value = k;
-        // }
     </script>
 </body>
 
-</html> 
+</html>

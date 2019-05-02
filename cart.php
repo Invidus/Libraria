@@ -19,28 +19,37 @@
 
 <body>
 <?
-
-if (isset($_GET['action']) && $_GET['action'] == "add") { //zamena
-    $id = intval($_GET['id']);
-    if (isset($_SESSION['cart'][$id])) {
-        $_SESSION['cart'][$id]['quantity']++;
-    } else {
-        $sql_s = "select * from product
-        where article = {$id}";
-        $query_s = mysqli_query($link, $sql_s);
-        if (mysql_num_rows($query_s) != 0) {
-            $row_s = mysql_fetch_array($query_s);
-
-            $_SESSION['cart'][$row_s['article']] = array(
-                "quantity" => 1,
-                "price" => $row_s['price']
-            );
-        } else {
-
-            $message = "This product id it's invalid!";
-        }
-    }
+require("connect.php");
+if(isset($_COOKIE)){
+    // $cart = new Cart;
+    // $ids = $cart->get();
+        // print_r($ids);
+// print_r($u);
+    
 }
+
+
+// if (isset($_POST['action']) && $_POST['action'] == "add") { //zamena
+//     $id = intval($_POST['id']);
+//     if (isset($_SESSION['cart'][$id])) {
+//         $_SESSION['cart'][$id]['quantity']++;
+//     } else {
+//         $sql_s = "select * from product
+//         where article = {$id}";
+//         $query_s = mysqli_query($link, $sql_s);
+//         if (mysql_num_rows($query_s) != 0) {
+//             $row_s = mysql_fetch_array($query_s);
+
+//             $_SESSION['cart'][$row_s['article']] = array(
+//                 "quantity" => 1,
+//                 "price" => $row_s['price']
+//             );
+//         } else {
+
+//             $message = "This product id it's invalid!";
+//         }
+//     }
+// }
     // if($_COOKIE['userLogin'] == '') {
     //     header('Refresh: 0;url = http://localhost/Libraria/Index.php');
     // }
@@ -86,18 +95,19 @@ if (isset($_GET['action']) && $_GET['action'] == "add") { //zamena
         </div>
     </nav>
     <?
+    
+  
+    // $ids = array();
+    // if(isset($_GET['id'])){
+    //     // foreach($_GET as $key => $value){
+    //     //     echo $key .' = '.$value.'<br>';
 
-    $ids = array();
-    if(isset($_GET['id'])){
-        // foreach($_GET as $key => $value){
-        //     echo $key .' = '.$value.'<br>';
-
-        // }
+    //     // }
         
-        array_push($ids,$_GET['id']);   
-        setcookie('article',$ids);
-    }
-    print_r($_COOKIE['article']);
+    //     array_push($ids,$_GET['id']);   
+    //     setcookie('article',$ids);
+    // }
+    // print_r($_COOKIE['article']);
 
     // $user = 'root';
     // $password = 'root';

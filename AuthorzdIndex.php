@@ -20,43 +20,10 @@
 <body>
     <?
     if ($_COOKIE['userLogin'] == '') {
-        header('Refresh: 0;url = http://localhost/Libraria/Index.php');}
+        header('Refresh: 0;url = http://localhost:85/Site%20for%20web/Index.php');}
         function bPrint()
     {
-        $user = 'root';
-        $password = 'root';
-        $db = 'libraria';
-        $host = 'localhost';
-        $port = 3307;
-        $link = mysqli_connect(
-            "$host:$port",
-            $user,
-            $password,
-            $db
-        );
-        $query = "SELECT * FROM `author` join author_book on
-        author.id=author_book.id_a join product on 
-        author_book.article_b=product.article";
-        $result = mysqli_query($link, $query);
-        if ($result) {
-            while ($row = mysqli_fetch_array($result)) {
-                $add = $row['article'];
-                $name = mb_strimwidth($row['name'], 0, 20, '..', 'utf-8');
-                $fname = mb_strimwidth($row['fname'], 0, 1, '', 'utf-8');
-                $srname = mb_strimwidth($row['surrname'], 0, 1, '', 'utf-8');
-
-                echo
-                    "<div class='images-div'>
-            " . $row['image'] . "</br>
-            " . $name . "</br>
-            " . $row['lname'] . " " . $fname . "." . $srname . "." . "</br>" . $row['price'] . " ₽. </br>
-            <form action='cart.php' method='get'>
-            <input type='hidden' name='id' value='" . $add . "' />
-            <button class='btn btn-primary' onclick = 'counter()' name = 'add' type='submit' >Добавить в корзину</button>
-            </form>
-            </div>";
-            }
-        }
+        require("outputItems.php");
     }
     
     ?>

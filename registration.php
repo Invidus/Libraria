@@ -93,31 +93,6 @@
 
             <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
         </form>
-
-        <!-- <div><label for="fname">Имя</label><br>
-            <input type="text" name="fname" id="fname"></div>
-
-            <label for="lname">Фамилия</label><br>
-            <input type="text" name="lname" id="lname">
-
-            <label for="login">Логин</label><br>
-            <input type="text" name="login" id="login">
-
-            <label for="pass">Пароль</label><br>
-            <input type="text" name="pass" id="pass">
-
-            <label for="pass1">Повторите пароль</label><br>
-            <input type="text" name="pass1" id="pass1">
-
-            <label for="phone">Телефон</label>br
-            <input type="text" name="phone" id="phone">
-
-            <label for="location">Местоположение</label>
-            <textarea id="location" name="location" cols="30" rows="10"></textarea>
-
-            <button type="submit" onClick="registration()">Зарегистроваться</button>
-        </form> -->
-
     </main>
 
     <?php 
@@ -158,19 +133,7 @@
                 check_length($login, 2, 30) && check_length($phone, 10, 11)
             ) {
 
-                $user = 'root';
-                $password = 'root';
-                $db = 'libraria';
-                $host = 'localhost';
-                $port = 3307;
-                $db_table = "users";
-
-                $link = mysqli_connect(
-                    "$host:$port",
-                    $user,
-                    $password,
-                    $db
-                );
+                require("connect.php");
 
                 $fnameBD = htmlentities(mysqli_real_escape_string($link, $_POST['fname']));
                 $lnameBD = htmlentities(mysqli_real_escape_string($link, $_POST['lname']));
@@ -193,7 +156,7 @@
                     //  $result = $mysqli -> query("Insert into".$db_table."(fname,lname,login,pass,phone,location) values ($fname,$lname,$login,$pass,$phone,$location)");
                     if ($result) {
                         echo ("<script>alert('Вы успешно зарегистровались !');</script>");
-                        header('Refresh: 0.3;url = http://localhost/Libraria/signIn.php');
+                        header('Refresh: 0.3;url = http://localhost:85/Site%20for%20web/signIn.php');
                     }
                     mysqli_close($link);
 
